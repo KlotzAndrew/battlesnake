@@ -1,0 +1,8 @@
+[package]
+authors = ["Andrew Klotz <agc.klotz@gmail.com>"]
+edition = "2018"
+name = "battlesnake"
+version = "0.1.0"
+
+[dependencies]
+rocket = "0.5.0-rc.1"
