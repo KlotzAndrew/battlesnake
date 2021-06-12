@@ -2,12 +2,23 @@
 
 #[macro_use]
 extern crate rocket;
+extern crate rocket_contrib;
 
 use rocket::http::Status;
+use rocket_contrib::json::Json;
+
+mod responses;
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+fn index() -> Json<responses::Info> {
+    Json(responses::Info {
+        apiversion: "1".to_string(),
+        author: None,
+        color: Some("#b7410e".to_string()),
+        head: None,
+        tail: None,
+        version: Some("0".to_string()),
+    })
 }
 
 #[post("/start")]
