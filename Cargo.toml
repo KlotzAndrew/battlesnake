@@ -5,4 +5,6 @@ name = "battlesnake"
 version = "0.1.0"
 
 [dependencies]
-rocket = "0.5.0-rc.1"
+rocket = "0.4.10"
+rocket_contrib = "0.4.5"
+serde_json = "1.0.64"
