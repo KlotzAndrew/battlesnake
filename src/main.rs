@@ -8,16 +8,17 @@ use rocket::http::Status;
 use rocket_contrib::json::Json;
 
 mod responses;
+mod requests;
 
 #[get("/")]
 fn index() -> Json<responses::Info> {
     Json(responses::Info {
         apiversion: "1".to_string(),
-        author: None,
-        color: Some("#b7410e".to_string()),
-        head: None,
-        tail: None,
-        version: Some("0".to_string()),
+        author: Some("klotz".to_string()),
+        color: Some("#B22222".to_string()),
+        head: Some("tiger-king".to_string()),
+        tail: Some("tiger-tail".to_string()),
+        version: Some("0.0.1".to_string()),
     })
 }
 
@@ -26,9 +27,10 @@ fn start() -> Status {
     Status::Ok
 }
 
-#[post("/move")]
-fn movement() -> Status {
-    Status::Ok
+#[post("/move", data = "<req>")]
+fn movement(req: Json<requests::Turn>) -> Json<responses::Move> {
+    let movement = responses::Move::new(responses::Movement::Left);
+    Json(movement)
 }
 
 #[post("/end")]
