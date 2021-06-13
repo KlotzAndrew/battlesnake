@@ -7,8 +7,10 @@ extern crate rocket_contrib;
 use rocket::http::Status;
 use rocket_contrib::json::Json;
 
-mod responses;
+// mod decider;
+mod mover;
 mod requests;
+mod responses;
 
 #[get("/")]
 fn index() -> Json<responses::Info> {
@@ -27,9 +29,12 @@ fn start() -> Status {
     Status::Ok
 }
 
-#[post("/move", data = "<req>")]
-fn movement(req: Json<requests::Turn>) -> Json<responses::Move> {
-    let movement = responses::Move::new(responses::Movement::Left);
+#[post("/move", data = "<turn>")]
+fn movement(turn: Json<requests::Turn>) -> Json<responses::Move> {
+    // let movement = responses::Move::new(responses::Movement::Left);
+    // Json(movement)
+
+    let movement = mover::next(turn.0);
     Json(movement)
 }
 
@@ -39,5 +44,7 @@ fn end() -> Status {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![index, start, movement, end]).launch();
+    rocket::ignite()
+        .mount("/", routes![index, start, movement, end])
+        .launch();
 }

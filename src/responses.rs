@@ -1,4 +1,3 @@
-
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Debug)]
@@ -26,7 +25,10 @@ pub struct Move {
 
 impl Move {
     pub fn new(movement: Movement) -> Move {
-        Move { movement , shout: None }
+        Move {
+            movement,
+            shout: None,
+        }
     }
 }
 

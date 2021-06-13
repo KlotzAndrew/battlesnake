@@ -5,6 +5,7 @@ name = "battlesnake"
 version = "0.1.0"
 
 [dependencies]
+petgraph = "0.5.1"
 rocket = "0.4.10"
 rocket_contrib = "0.4.5"
 serde = {version = "1.0", features = ["derive"]}
